@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+class MyWeb extends StatefulWidget {
+  const MyWeb({Key? key}) : super(key: key);
+
+  @override
+  State<MyWeb> createState() => _MyWebState();
+}
+
+class _MyWebState extends State<MyWeb> {
+  var controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onWebResourceError: (WebResourceError error) {},
+      ),
+    )
+    ..loadRequest(Uri.parse('http://localhost:3001/galaxy2'));
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: WebViewWidget(controller: controller),
+      ),
+    );
+  }
+}
