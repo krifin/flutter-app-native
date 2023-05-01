@@ -66,7 +66,11 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("Already have an account"),
-                TextButton(onPressed: () {}, child: Text("Sign Up"))
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "signup");
+                    },
+                    child: Text("Sign Up"))
               ],
             )
           ],
