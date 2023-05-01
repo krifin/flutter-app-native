@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/login.dart';
 import 'package:flutterapp/webP.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: 'web1',
-    routes: {'web1': (context) => MyWeb()},
+    initialRoute: 'login',
+    routes: {'web1': (context) => MyWeb(), 'login': (context) => LoginPage()},
   ));
 }
