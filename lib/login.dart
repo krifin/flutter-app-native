@@ -59,6 +59,16 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _handleLogin,
               child: Text('Login'),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Already have an account"),
+                TextButton(onPressed: () {}, child: Text("Sign Up"))
+              ],
+            )
           ],
         ),
       ),
