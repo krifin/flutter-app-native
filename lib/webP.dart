@@ -22,7 +22,7 @@ class _MyWebState extends State<MyWeb> {
         onWebResourceError: (WebResourceError error) {},
       ),
     )
-    ..loadRequest(Uri.parse('http://localhost:3001/home'));
+    ..loadRequest(Uri.parse('http://localhost:3002/home'));
 
   @override
   Widget build(BuildContext context) {
