@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "980463927463",
-    "project_id": "metamaap-proj",
-    "storage_bucket": "metamaap-proj.appspot.com"
+    "project_number": "952701010364",
+    "project_id": "metaverse-council",
+    "storage_bucket": "metaverse-council.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:980463927463:android:be3b101cb9e0e962571b82",
+        "mobilesdk_app_id": "1:952701010364:android:5d883d0e256c9c41866bb9",
         "android_client_info": {
           "package_name": "com.example.flutterapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "980463927463-3sts95810q40dcsvh54gmtd5e7l38kme.apps.googleusercontent.com",
+          "client_id": "952701010364-0p60vhla5jilbbsn61k51hv90ahoefgb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFzJM6tIuccC9qcDZgcb7cvm4W8yYydqQ"
+          "current_key": "AIzaSyCqMYpiiH4T9y1XLty1BCk0WbG6bv4EBnA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "980463927463-3sts95810q40dcsvh54gmtd5e7l38kme.apps.googleusercontent.com",
+              "client_id": "952701010364-0p60vhla5jilbbsn61k51hv90ahoefgb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAFzJM6tIuccC9qcDZgcb7cvm4W8yYydqQ',
-    appId: '1:980463927463:android:be3b101cb9e0e962571b82',
-    messagingSenderId: '980463927463',
-    projectId: 'metamaap-proj',
-    storageBucket: 'metamaap-proj.appspot.com',
+    apiKey: 'AIzaSyCqMYpiiH4T9y1XLty1BCk0WbG6bv4EBnA',
+    appId: '1:952701010364:android:5d883d0e256c9c41866bb9',
+    messagingSenderId: '952701010364',
+    projectId: 'metaverse-council',
+    storageBucket: 'metaverse-council.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyADIxbTuI-UHgmZFGN2QUrRPhlQRmGNgYQ',
-    appId: '1:980463927463:ios:9d073621c6f86880571b82',
-    messagingSenderId: '980463927463',
-    projectId: 'metamaap-proj',
-    storageBucket: 'metamaap-proj.appspot.com',
-    iosClientId: '980463927463-v3qfgl08efjbnvfnd347g4m8gbickh9d.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA3_brWqrn0r8S6pmN__D2UHl0CYwRTYcU',
+    appId: '1:952701010364:ios:def3cee147135bb2866bb9',
+    messagingSenderId: '952701010364',
+    projectId: 'metaverse-council',
+    storageBucket: 'metaverse-council.appspot.com',
+    iosClientId: '952701010364-l9fo4d2r3k37d6oe89uqjupae6flkfvn.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterapp',
   );
 }
