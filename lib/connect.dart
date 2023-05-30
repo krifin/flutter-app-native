@@ -75,132 +75,136 @@ class _ConnectNewState extends State<ConnectNew> {
     return Scaffold(
         // backgroundColor: Colors.black,
         body: Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage("assets/background.png"),
-        fit: BoxFit.cover,
-      )),
-      child: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: 340,
-          margin: EdgeInsets.all(20.0),
-          padding: EdgeInsets.all(25.0),
-          decoration: BoxDecoration(
-            color: Color(0xff555556).withOpacity(0.5),
-            borderRadius: BorderRadius.circular(35.0),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.grey,
-                      )),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Text(
-                    'METAMAAP',
-                    style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                        fontFamily: 'BeVeitnamPro',
-                        letterSpacing: 10),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  CustomContainer(
-                    image: "assets/google.png",
-                    text: 'Google',
-                  ),
-                  SizedBox(
-                    width: 2,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      loginUsingMetamask(context);
-                    },
-                    child: Container(
-                      width: 90.0,
-                      height: 90.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 0.5,
-                        ),
-                        color: Color(0xff555556).withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20.0),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("assets/background.png"),
+              fit: BoxFit.cover,
+            )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.grey,
+                          )),
+                      SizedBox(
+                        width: 12,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Text(
+                        'METAMAAP',
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontFamily: 'BeVeitnamPro',
+                            letterSpacing: 10),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 200,
+                  margin: EdgeInsets.all(20.0),
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  decoration: BoxDecoration(
+                    color: Color(0xff555556).withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(35.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Image.asset("assets/mask.png"),
-                          SizedBox(
-                            height: 7,
+                          CustomContainer(
+                            image: "assets/google.png",
+                            text: 'Google',
                           ),
-                          Text(
-                            "MetaMask",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
+                          SizedBox(
+                            width: 2,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              loginUsingMetamask(context);
+                            },
+                            child: Container(
+                              width: 90.0,
+                              height: 90.0,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 0.5,
+                                ),
+                                color: Color(0xff555556).withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Image.asset("assets/mask.png"),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  Text(
+                                    "MetaMask",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
+                          ),
+                          SizedBox(
+                            width: 2,
+                          ),
+                          CustomContainer(
+                            image: "assets/mail.png",
+                            text: 'Use Email',
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 2,
-                  ),
-                  CustomContainer(
-                    image: "assets/mail.png",
-                    text: 'Use Email',
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Are you new?',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 100,
-                    height: 40,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xff7B61FF),
-                        onPrimary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Row(
+                          children: [
+                            Text(
+                              'If  you’re new?',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, "emailSignup");
+                                },
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                      color: Color(0xff7B61FF),
+                                      fontWeight: FontWeight.bold),
+                                )),
+                          ],
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "emailSignup");
-                      },
-                      child: Text('Sign up'),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    ));
+                    ],
+                  ),
+                ),
+              ],
+            )));
   }
 }
 
