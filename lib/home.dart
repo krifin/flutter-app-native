@@ -75,6 +75,11 @@ class _Home1State extends State<Home1> {
       backgroundColor: Color(0xff1E1E1E),
       body: SafeArea(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          )),
           child: Column(
             children: [
               SizedBox(
