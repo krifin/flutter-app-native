@@ -73,6 +73,7 @@ class _ConnectNewState extends State<ConnectNew> {
               _session = null;
             }));
     return Scaffold(
+
         // backgroundColor: Colors.black,
         body: Container(
             decoration: BoxDecoration(
