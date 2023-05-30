@@ -1,13 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class EmailLoginNew extends StatefulWidget {
-  const EmailLoginNew({Key? key}) : super(key: key);
+class EmailLogin extends StatefulWidget {
+  const EmailLogin({Key? key}) : super(key: key);
 
   @override
-  State<EmailLoginNew> createState() => _EmailLoginNewState();
+  State<EmailLogin> createState() => _EmailLoginState();
 }
 
-class _EmailLoginNewState extends State<EmailLoginNew> {
+class _EmailLoginState extends State<EmailLogin> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+  bool _isEmailVerified = true;
+  var _user;
+  Future<void> _login() async {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+    try {
+      final UserCredential user = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      // Check email verification
+      if (!user.user!.emailVerified) {
+        if (mounted) {
+          setState(() {
+            _isEmailVerified = false;
+            _user = user.user!;
+          });
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please verify your email before logging in')),
+        );
+        // _auth.signOut();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('user logged in')),
+        );
+        print("user logged in");
+        Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+      }
+    } on FirebaseAuthException catch (e) {
+      // Show error message if sign in failed
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message!)),
+      );
+    } finally {}
+  }
+
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -54,6 +99,7 @@ class _EmailLoginNewState extends State<EmailLoginNew> {
                 children: [
                   TextField(
                     style: TextStyle(color: Colors.white),
+                    controller: _emailController,
                     decoration: InputDecoration(
                       hintText: 'Your Email',
                       hintStyle: TextStyle(color: Colors.white70),
@@ -69,6 +115,7 @@ class _EmailLoginNewState extends State<EmailLoginNew> {
                   ),
                   SizedBox(height: 15.0),
                   TextField(
+                    controller: _passwordController,
                     style: TextStyle(color: Colors.white),
                     obscureText: _obscureText,
                     decoration: InputDecoration(
@@ -122,6 +169,7 @@ class _EmailLoginNewState extends State<EmailLoginNew> {
                     ),
                   ),
                   onPressed: () {
+                    _login();
                     print('Button Pressed');
                   },
                   child: Text('Login'),

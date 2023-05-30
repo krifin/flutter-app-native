@@ -1,15 +1,45 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class EmailSignupNew extends StatefulWidget {
-  const EmailSignupNew({Key? key}) : super(key: key);
+class EmailSignup extends StatefulWidget {
+  const EmailSignup({Key? key}) : super(key: key);
 
   @override
-  State<EmailSignupNew> createState() => _EmailSignupNewState();
+  State<EmailSignup> createState() => _EmailSignupState();
 }
 
-class _EmailSignupNewState extends State<EmailSignupNew> {
+class _EmailSignupState extends State<EmailSignup> {
   bool _obscureText = true;
   bool _obscureTextComnfirm = true;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future<void> _signup() async {
+    try {
+      final UserCredential userCred =
+          await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      if (!userCred.user!.emailVerified) {
+        await userCred.user!.sendEmailVerification();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Verification email sent')),
+        );
+      }
+      print("user registered");
+    } on FirebaseAuthException catch (e) {
+      // Show error message if sign up failed
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message!)),
+      );
+    } finally {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +100,7 @@ class _EmailSignupNewState extends State<EmailSignupNew> {
                   ),
                   SizedBox(height: 15.0),
                   TextField(
+                    controller: _emailController,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Your Email',
@@ -86,6 +117,7 @@ class _EmailSignupNewState extends State<EmailSignupNew> {
                   ),
                   SizedBox(height: 15.0),
                   TextField(
+                    controller: _passwordController,
                     style: TextStyle(color: Colors.white),
                     obscureText: _obscureText,
                     decoration: InputDecoration(
@@ -159,6 +191,8 @@ class _EmailSignupNewState extends State<EmailSignupNew> {
                   ),
                   onPressed: () {
                     print('Button Pressed');
+                    _signup();
+                    Navigator.pushNamed(context, "emailLogin");
                   },
                   child: Text('Signup'),
                 ),
