@@ -74,95 +74,114 @@ class _Home1State extends State<Home1> {
     return Scaffold(
       backgroundColor: Color(0xff1E1E1E),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
-          )),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "METAMAAP",
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontFamily: 'BeVeitnamPro',
-                        letterSpacing: 10),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.7,
-                child: TextField(
-                  controller: _searchController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.grey,
+          child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("assets/background.png"),
+              fit: BoxFit.cover,
+            )),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "METAMAAP",
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontFamily: 'BeVeitnamPro',
+                          letterSpacing: 10),
                     ),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(color: Colors.white70),
-                    filled: true,
-                    fillColor: Color(0xff555556),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(7.0),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16.0,
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: TextField(
+                    controller: _searchController,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.white70),
+                      filled: true,
+                      fillColor: Color(0xff555556),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(7.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        margin: EdgeInsets.only(left: 21, right: 21, bottom: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Color(0xff262626),
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  )),
+              ],
             ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xff262626),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xff262626),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "connectnew");
-                },
-                child: Text(
-                  "CONNECT",
-                  style: TextStyle(color: Colors.white),
-                ))
-          ],
-        ),
-      ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, "connectnew");
+              },
+              child: Text(
+                "CONNECT",
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
+      )),
+
+      // bottomNavigationBar: Container(
+      //   margin: EdgeInsets.only(left: 21, right: 21, bottom: 20),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       Container(
+      //         decoration: BoxDecoration(
+      //           color: Color(0xff262626),
+      //           borderRadius: BorderRadius.circular(12.0),
+      //         ),
+      //         child: IconButton(
+      //             onPressed: () {},
+      //             icon: Icon(
+      //               Icons.search,
+      //               color: Colors.white,
+      //             )),
+      //       ),
+      //       ElevatedButton(
+      //           style: ElevatedButton.styleFrom(
+      //             primary: Color(0xff262626),
+      //             shape: RoundedRectangleBorder(
+      //               borderRadius: BorderRadius.circular(12.0),
+      //             ),
+      //           ),
+      //           onPressed: () {
+      //             Navigator.pushNamed(context, "connectnew");
+      //           },
+      //           child: Text(
+      //             "CONNECT",
+      //             style: TextStyle(color: Colors.white),
+      //           ))
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
