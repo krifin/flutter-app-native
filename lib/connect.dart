@@ -1,7 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:walletconnect_dart/walletconnect_dart.dart';
+
+Future<UserCredential> signInWithGoogle(BuildContext context) async {
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  final UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+  if (userCredential != null) {
+    // Navigate to another screen
+    Navigator.pushNamedAndRemoveUntil(context, "home1", (route) => false);
+  }
+
+  return userCredential;
+}
 
 class ConnectNew extends StatefulWidget {
   const ConnectNew({Key? key}) : super(key: key);
@@ -222,6 +246,8 @@ class CustomContainer extends StatelessWidget {
         print('$text container pressed');
         if (text == "Use Email") {
           Navigator.pushNamed(context, "emailLogin");
+        } else if (text == "Google") {
+          signInWithGoogle(context);
         }
       },
       child: Container(

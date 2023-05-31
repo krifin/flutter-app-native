@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class MyHome1 extends StatefulWidget {
   const MyHome1({Key? key}) : super(key: key);
@@ -141,6 +142,8 @@ class _MyHome1State extends State<MyHome1> {
               ),
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
+                await GoogleSignIn().signOut();
+
                 Navigator.pushNamedAndRemoveUntil(
                     context, "home", (route) => false);
               },
