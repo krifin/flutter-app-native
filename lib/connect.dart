@@ -28,18 +28,18 @@ class _ConnectNewState extends State<ConnectNew> {
       try {
         session = await connector.createSession(onDisplayUri: (uri) async {
           _uri = uri;
-
-          if (await canLaunch(uri)) {
-            await launchUrlString(uri, mode: LaunchMode.externalApplication);
-          } else {
-            const playStoreUrl =
-                'market://details?id=io.metamask'; // Metamask app id in play store
-            if (await canLaunch(playStoreUrl)) {
-              await launch(playStoreUrl);
-            } else {
-              throw 'Could not launch Metamask or Play Store';
-            }
-          }
+          await launchUrlString(uri, mode: LaunchMode.externalApplication);
+          // if (await canLaunch(uri)) {
+          //   await launchUrlString(uri, mode: LaunchMode.externalApplication);
+          // } else {
+          //   const playStoreUrl =
+          //       'market://details?id=io.metamask'; // Metamask app id in play store
+          //   if (await canLaunch(playStoreUrl)) {
+          //     await launch(playStoreUrl);
+          //   } else {
+          //     throw 'Could not launch Metamask or Play Store';
+          //   }
+          // }
         });
         print(session.accounts[0]);
         setState(() {
@@ -222,8 +222,6 @@ class CustomContainer extends StatelessWidget {
         print('$text container pressed');
         if (text == "Use Email") {
           Navigator.pushNamed(context, "emailLogin");
-        } else if (text == "MetaMask") {
-          // Navigator.pushNamed(context, "mask");
         }
       },
       child: Container(

@@ -5,6 +5,7 @@ import 'package:flutterapp/connect.dart';
 import 'package:flutterapp/emailLogin.dart';
 
 import 'package:flutterapp/home.dart';
+import 'package:flutterapp/homeAfterLogin.dart';
 import 'package:flutterapp/splash.dart';
 
 import 'package:flutterapp/webP.dart';
@@ -24,6 +25,7 @@ void main() async {
       'connectnew': (context) => ConnectNew(),
       'emailLogin': (context) => EmailLogin(),
       'emailSignup': (context) => EmailSignup(),
+      'home1': (context) => MyHome1()
     },
   ));
 }
