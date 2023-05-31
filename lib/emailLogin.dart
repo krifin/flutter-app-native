@@ -43,7 +43,7 @@ class _EmailLoginState extends State<EmailLogin> {
           SnackBar(content: Text('user logged in')),
         );
         print("user logged in");
-        Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, "home1", (route) => false);
       }
     } on FirebaseAuthException catch (e) {
       // Show error message if sign in failed
