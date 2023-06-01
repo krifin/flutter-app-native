@@ -130,6 +130,20 @@ class _MyHome1State extends State<MyHome1> {
                     ),
                   ),
                 ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff262626),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                    onPressed: () async {
+                      Navigator.pushNamed(context, "addMeta");
+                    },
+                    child: Text(
+                      "Add Metaverse",
+                      style: TextStyle(color: Colors.white),
+                    )),
               ],
             ),
           ),
