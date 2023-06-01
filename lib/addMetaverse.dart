@@ -61,7 +61,9 @@ There is No membership fee or charges**
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "addMetaForm");
+                        },
                         child: Text('Add now'),
                       ),
                     )

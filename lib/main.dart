@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/addMetaForm.dart';
 import 'package:flutterapp/addMetaverse.dart';
 
 import 'package:flutterapp/connect.dart';
@@ -27,7 +28,8 @@ void main() async {
       'emailLogin': (context) => EmailLogin(),
       'emailSignup': (context) => EmailSignup(),
       'home1': (context) => MyHome1(),
-      'addMeta': (context) => AddMetaverse()
+      'addMeta': (context) => AddMetaverse(),
+      'addMetaForm': (context) => AddMetaForm()
     },
   ));
 }
