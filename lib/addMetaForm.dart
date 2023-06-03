@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddMetaForm extends StatefulWidget {
   const AddMetaForm({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class _AddMetaFormState extends State<AddMetaForm> {
   final TextEditingController _metaController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _logoController = TextEditingController();
+  final TextEditingController _imageController = TextEditingController();
   final TextEditingController _websiteController = TextEditingController();
   final TextEditingController _instagramController = TextEditingController();
   final TextEditingController _linkToProductController =
@@ -43,8 +46,65 @@ class _AddMetaFormState extends State<AddMetaForm> {
   ];
   String? dropdownValue = 'Multiplayer Arcade Game';
 
-  void saveDataToFirestore() {
+  void saveDataToFirestore() async {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('MMMM d, yyyy at h:mm:s a O').format(now);
+
+    final user = FirebaseAuth.instance.currentUser;
+    String uid = user != null ? user.uid : '';
+
+    List<String> selectedOptions = [];
+    for (int i = 0; i < checkboxValues.length; i++) {
+      if (checkboxValues[i]) {
+        selectedOptions.add(labels[i]);
+      }
+    }
+    Map<String, dynamic> data = {
+      'updatedAt': formattedDate,
+      'description': _descriptionController.text,
+      'category': dropdownValue,
+      'interests': selectedOptions,
+      'city': _cityController.text,
+      'demo': _linkToProductController.text,
+      'discord': _discordController.text,
+      'email': _emailController.text,
+      'firstName': _nameController.text,
+      'image': _imageController.text,
+      'instagram': _instagramController.text,
+      'lastName': _lastNameController.text,
+      'linkedin': _linkedInController.text,
+      'logo': _logoController.text,
+      'name': _metaController.text,
+      'nationality': _nationalityController.text,
+      'phone': _phoneNumberController.text,
+      'preferredName': _preferredNameController.text,
+      'twitter': _twitterController.text,
+      'website': _websiteController.text,
+      'updatedBy': uid
+    };
+
+    print(data);
+
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore.collection('metaverses').add(data);
+    _emailController.clear();
+    _metaController.clear();
     _descriptionController.clear();
+    _logoController.clear();
+    _imageController.clear();
+    _websiteController.clear();
+    _instagramController.clear();
+    _linkToProductController.clear();
+    _linkedInController.clear();
+    _nameController.clear();
+    _preferredNameController.clear();
+    _lastNameController.clear();
+    _phoneNumberController.clear();
+    _nationalityController.clear();
+    _cityController.clear();
+    _twitterController.clear();
+    _discordController.clear();
+    Navigator.pushNamedAndRemoveUntil(context, "home1", (route) => false);
   }
 
   @override
@@ -198,6 +258,35 @@ class _AddMetaFormState extends State<AddMetaForm> {
                         controller: _logoController,
                         decoration: InputDecoration(
                           hintText: 'Attach one Logo of your Metaverse',
+                          hintStyle: TextStyle(color: Colors.white70),
+                          filled: true,
+                          fillColor: Color(0xff555556).withOpacity(0.5),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 0.5),
+                            borderRadius: BorderRadius.circular(27.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 0.5),
+                            borderRadius: BorderRadius.circular(27.0),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 12.0),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 15.0),
+                      TextFormField(
+                        style: TextStyle(color: Colors.white),
+                        controller: _imageController,
+                        decoration: InputDecoration(
+                          hintText: 'Attach one image of your Metaverse',
                           hintStyle: TextStyle(color: Colors.white70),
                           filled: true,
                           fillColor: Color(0xff555556).withOpacity(0.5),
@@ -625,10 +714,10 @@ class _AddMetaFormState extends State<AddMetaForm> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // saveDataToFirestore();
+                              saveDataToFirestore();
                             }
                           },
-                          child: Text('Add now'),
+                          child: Text('Submit'),
                         ),
                       ),
                       SizedBox(
