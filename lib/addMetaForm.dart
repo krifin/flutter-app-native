@@ -8,6 +8,20 @@ class AddMetaForm extends StatefulWidget {
 }
 
 class _AddMetaFormState extends State<AddMetaForm> {
+  List<bool> checkboxValues = List.generate(10, (index) => false);
+  List<String> labels = [
+    'Networking opportunity',
+    'Metaverse asset research center',
+    'CAMLab',
+    'HR support',
+    'Technical Development support',
+    'Grant & Investor Access',
+    'Marketing & Promotion support',
+    'Industry Insights & report',
+    'Policy advocacy',
+    'Other',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -351,6 +365,49 @@ class _AddMetaFormState extends State<AddMetaForm> {
                       ),
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 12.0),
+                    ),
+                  ),
+                  SizedBox(height: 15.0),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                    decoration: BoxDecoration(
+                      color: Color(0xff555556).withOpacity(0.5),
+                      border: Border.all(color: Colors.white, width: 0.5),
+                      borderRadius: BorderRadius.circular(27.0),
+                    ),
+                    child: Column(
+                      children: List<Widget>.generate(
+                        checkboxValues.length,
+                        (index) => Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.8,
+                              child: Checkbox(
+                                checkColor: Color(0xff555556),
+                                activeColor: Color(0xff555556),
+                                fillColor:
+                                    MaterialStateProperty.resolveWith((states) {
+                                  if (states.contains(MaterialState.selected)) {
+                                    return Colors.white;
+                                  }
+                                  return Colors.white;
+                                }),
+                                value: checkboxValues[index],
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    checkboxValues[index] = newValue!;
+                                  });
+                                },
+                              ),
+                            ),
+                            Text(
+                              labels[index],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 15.0),
