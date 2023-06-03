@@ -45,7 +45,7 @@ class _AddMetaFormState extends State<AddMetaForm> {
     'Other',
   ];
   String? dropdownValue = 'Multiplayer Arcade Game';
-
+  bool disclaimerAccepted = false;
   void saveDataToFirestore() async {
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('MMMM d, yyyy at h:mm:s a O').format(now);
@@ -58,6 +58,13 @@ class _AddMetaFormState extends State<AddMetaForm> {
       if (checkboxValues[i]) {
         selectedOptions.add(labels[i]);
       }
+    }
+
+    String isDisclaimerAccepted;
+    if (disclaimerAccepted) {
+      isDisclaimerAccepted = "Yes";
+    } else {
+      isDisclaimerAccepted = "No";
     }
     Map<String, dynamic> data = {
       'updatedAt': formattedDate,
@@ -80,7 +87,8 @@ class _AddMetaFormState extends State<AddMetaForm> {
       'preferredName': _preferredNameController.text,
       'twitter': _twitterController.text,
       'website': _websiteController.text,
-      'updatedBy': uid
+      'updatedBy': uid,
+      'disclaimer': isDisclaimerAccepted,
     };
 
     print(data);
@@ -698,6 +706,70 @@ class _AddMetaFormState extends State<AddMetaForm> {
                         },
                       ),
                       SizedBox(height: 15.0),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 20.0),
+                        decoration: BoxDecoration(
+                          color: Color(0xff555556).withOpacity(0.5),
+                          border: Border.all(color: Colors.white, width: 0.5),
+                          borderRadius: BorderRadius.circular(27.0),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Disclaimer',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                            SizedBox(height: 10),
+                            SingleChildScrollView(
+                              child: Text(
+                                'Our Foundation is committed to protecting and respecting your privacy, and we’ll only use your personal information to administer your account and to provide the products and services you requested from us. From time to time, we would like to contact you about our products, as well as other content that may be of interest to you.\n\n'
+                                'You agree to having the data provided processed for the legitimate purpose of the Metaverse Ambassadors Program and receiving communication by Metaverse Council.\n\n'
+                                'You also agree that Metaverse Council has the right to make determinations concerning grants at its sole and absolute discretion, and that Metaverse Council is under no obligation to offer you a grant;\n\n'
+                                'You can unsubscribe from these communications at any time with the unsubscribe link provided in each communication sent to you.\n\n'
+                                'By clicking submit below, you consent to allow our Foundation to store and process the personal information submitted above to provide you the content requested.',
+                                style: TextStyle(
+                                    color: Colors.white70, fontSize: 14),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Transform.scale(
+                                  scale: 0.8,
+                                  child: Checkbox(
+                                    checkColor: Color(0xff555556),
+                                    activeColor: Color(0xff555556),
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) {
+                                      if (states
+                                          .contains(MaterialState.selected)) {
+                                        return Colors.white;
+                                      }
+                                      return Colors.white;
+                                    }),
+                                    value: disclaimerAccepted,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        disclaimerAccepted = newValue!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Text(
+                                  'I accept the disclaimer',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height: 30,
                       ),
