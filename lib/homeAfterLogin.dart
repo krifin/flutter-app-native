@@ -15,6 +15,7 @@ class _MyHome1State extends State<MyHome1> {
   List<Map<String, dynamic>> documentsList = [];
   List<Map<String, dynamic>> displayedList = [];
   TextEditingController _searchController = TextEditingController();
+  var email = "";
 
   bool showMenuBar = false;
 
@@ -42,7 +43,6 @@ class _MyHome1State extends State<MyHome1> {
     _searchController.addListener(() {
       filterSearchResults(_searchController.text);
     });
-
     super.initState();
   }
 
@@ -92,23 +92,18 @@ class _MyHome1State extends State<MyHome1> {
           child: TextButton(
             child: Text('Add Metaverse', style: TextStyle(color: Colors.white)),
             onPressed: () {
-              // Handle the button click
-            },
-          ),
-        ),
-        PopupMenuItem(
-          child: TextButton(
-            child: Text('Option 1', style: TextStyle(color: Colors.white)),
-            onPressed: () {
-              // Handle the button click
+              Navigator.pushNamed(context, "addMeta");
             },
           ),
         ),
         PopupMenuItem(
           child: TextButton(
             child: Text('Logout', style: TextStyle(color: Colors.white)),
-            onPressed: () {
-              // Handle the button click
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              await GoogleSignIn().signOut();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "home", (route) => false);
             },
           ),
         ),
@@ -278,41 +273,9 @@ class _MyHome1State extends State<MyHome1> {
                         ],
                       ),
                     ),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xff262626),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                        ),
-                        onPressed: () async {
-                          Navigator.pushNamed(context, "addMeta");
-                        },
-                        child: Text(
-                          "Add Metaverse",
-                          style: TextStyle(color: Colors.white),
-                        )),
                   ],
                 ),
               ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xff262626),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-                    await GoogleSignIn().signOut();
-
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, "home", (route) => false);
-                  },
-                  child: Text(
-                    "LOGOUT",
-                    style: TextStyle(color: Colors.white),
-                  ))
             ],
           ),
           showMenuBar
