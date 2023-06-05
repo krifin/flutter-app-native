@@ -108,26 +108,67 @@ class _MyHome1State extends State<MyHome1> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.7,
-                  child: TextField(
-                    controller: _searchController,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
+                  child: Column(
+                    children: <Widget>[
+                      TextField(
+                        controller: _searchController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Search',
+                          hintStyle: TextStyle(color: Colors.white70),
+                          filled: true,
+                          fillColor: Color(0xff4b4a4a),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7.0),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ),
+                        ),
                       ),
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.white70),
-                      filled: true,
-                      fillColor: Color(0xff555556),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(7.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                      ),
-                    ),
+                      (documentsList.length == displayedList.length)
+                          ? Container()
+                          : SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: ListView.builder(
+                                itemCount: displayedList.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      print(
+                                        displayedList[index]["nm"],
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0, vertical: 10.0),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xff4b4a4a),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(Icons.search,
+                                              color: Colors.grey),
+                                          SizedBox(width: 10.0),
+                                          Text(
+                                            displayedList[index]["nm"],
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ))
+                    ],
                   ),
                 ),
                 ElevatedButton(
