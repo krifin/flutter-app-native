@@ -88,20 +88,67 @@ class _MyHome1State extends State<MyHome1> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "METAMAAP",
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontFamily: 'BeVeitnamPro',
-                          letterSpacing: 10),
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  child: Stack(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Padding(
+                                padding: EdgeInsets.all(
+                                    5.0), // Adjust this value to your needs
+                                child: Icon(
+                                  Icons.menu,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Padding(
+                                padding: EdgeInsets.all(
+                                    5.0), // Adjust this value to your needs
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "METAMAAP",
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  color: Colors.white,
+                                  fontFamily: 'BeVeitnamPro',
+                                  letterSpacing: 10),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 40,
