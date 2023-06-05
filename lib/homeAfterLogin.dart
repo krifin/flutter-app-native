@@ -74,6 +74,54 @@ class _MyHome1State extends State<MyHome1> {
     print(displayedList);
   }
 
+  void _showMenu(BuildContext context) {
+    final RenderBox button = context.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
+    final buttonRect =
+        button.localToGlobal(Offset.zero, ancestor: overlay) & button.size;
+
+    showMenu(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      color: Color(0xff2F2F2F).withOpacity(0.95),
+      context: context,
+      items: <PopupMenuEntry>[
+        PopupMenuItem(
+          child: TextButton(
+            child: Text('Add Metaverse', style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              // Handle the button click
+            },
+          ),
+        ),
+        PopupMenuItem(
+          child: TextButton(
+            child: Text('Option 1', style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              // Handle the button click
+            },
+          ),
+        ),
+        PopupMenuItem(
+          child: TextButton(
+            child: Text('Logout', style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              // Handle the button click
+            },
+          ),
+        ),
+      ],
+      position: RelativeRect.fromLTRB(
+        buttonRect.right,
+        buttonRect.top + 40,
+        overlay.size.width - buttonRect.right,
+        overlay.size.height - buttonRect.bottom,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +175,9 @@ class _MyHome1State extends State<MyHome1> {
                                     border: Border.all(color: Colors.white),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    _showMenu(context);
+                                  },
                                   child: Padding(
                                     padding: EdgeInsets.all(
                                         5.0), // Adjust this value to your needs
