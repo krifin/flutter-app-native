@@ -20,7 +20,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'metaDetail',
+    initialRoute: 'splash',
     routes: {
       'web1': (context) => MyWeb(),
       'home': (context) => Home1(),
