@@ -8,6 +8,7 @@ import 'package:flutterapp/emailLogin.dart';
 
 import 'package:flutterapp/home.dart';
 import 'package:flutterapp/homeAfterLogin.dart';
+import 'package:flutterapp/metaverseDetail.dart';
 import 'package:flutterapp/splash.dart';
 
 import 'package:flutterapp/webP.dart';
@@ -19,7 +20,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'splash',
+    initialRoute: 'metaDetail',
     routes: {
       'web1': (context) => MyWeb(),
       'home': (context) => Home1(),
@@ -29,7 +30,8 @@ void main() async {
       'emailSignup': (context) => EmailSignup(),
       'home1': (context) => MyHome1(),
       'addMeta': (context) => AddMetaverse(),
-      'addMetaForm': (context) => AddMetaForm()
+      'addMetaForm': (context) => AddMetaForm(),
+      'metaDetail': (context) => MetaverseDetail()
     },
   ));
 }
