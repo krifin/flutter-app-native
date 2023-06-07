@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHome1 extends StatefulWidget {
   const MyHome1({Key? key}) : super(key: key);
@@ -314,7 +315,13 @@ class _MyHome1State extends State<MyHome1> {
                             style: TextStyle(color: Colors.white),
                           )),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            final Uri url =
+                                Uri.parse('https://www.metaversecouncil.io/');
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
                           child: Text(
                             "Metaverse Council",
                             style: TextStyle(color: Colors.white),
