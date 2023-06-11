@@ -14,6 +14,22 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
     'https://pbs.twimg.com/media/FKhwNrFWYAEaaDQ.jpg:large',
     'https://pbs.twimg.com/media/FKhwNrFWYAEaaDQ.jpg:large'
   ];
+
+  var coverImageList = [
+    'https://pbs.twimg.com/media/FKhwNrFWYAEaaDQ.jpg:large',
+    'https://mediapool.bmwgroup.com/cache/P9/202301/P90492224/P90492224-bmw-group-supplierthon-for-the-metaverse-and-other-virtual-experiences-01-2023-1680px.jpg',
+    'https://www.bostonglobe.com/resizer/YpOXRh3x-QuRFK_wgmr86eny6WM=/arc-anglerfish-arc2-prod-bostonglobe/public/N7YPWXJCVVFWXNO55WWBZDINV4.JPG',
+    'https://img.bfmtv.com/c/0/0/af7/11f694c76cbd83569dfea09a18da9.jpg'
+  ];
+
+  int coverIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +68,7 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                     borderRadius: BorderRadius.circular(23.0),
                     image: DecorationImage(
                       opacity: 0.5,
-                      image: NetworkImage(
-                          'https://pbs.twimg.com/media/FKhwNrFWYAEaaDQ.jpg:large'),
+                      image: NetworkImage(coverImageList[coverIndex]),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -92,7 +107,15 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if (coverIndex > 0) {
+                                coverIndex--;
+                              } else {
+                                coverIndex = coverImageList.length - 1;
+                              }
+                            });
+                          },
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 15,
@@ -106,27 +129,42 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                           scrollDirection: Axis.horizontal,
                           itemCount: imageUrls.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              width: 40.0,
-                              height: 40.0,
-                              margin: EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: Colors.white, width: 2.0),
-                              ),
-                              child: ClipOval(
-                                child: Image.network(
-                                  imageUrls[index],
-                                  fit: BoxFit.cover,
+                            return InkWell(
+                              child: Container(
+                                width: 40.0,
+                                height: 40.0,
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: Colors.white, width: 2.0),
+                                ),
+                                child: ClipOval(
+                                  child: Image.network(
+                                    coverImageList[index],
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
+                              onTap: () {
+                                setState(() {
+                                  coverIndex = index;
+                                });
+                              },
                             );
                           },
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if (coverIndex < coverImageList.length - 1) {
+                                coverIndex++;
+                              } else {
+                                coverIndex = 0;
+                              }
+                            });
+                          },
                           icon: Icon(
                             Icons.arrow_forward_ios,
                             size: 15,
