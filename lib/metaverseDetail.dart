@@ -87,6 +87,58 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                   height: 20,
                 ),
                 Container(
+                  height: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            size: 15,
+                            color: Color(0xff767683),
+                          )),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 40,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: imageUrls.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              width: 40.0,
+                              height: 40.0,
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(color: Colors.white, width: 2.0),
+                              ),
+                              child: ClipOval(
+                                child: Image.network(
+                                  imageUrls[index],
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15,
+                            color: Color(0xff767683),
+                          )),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -184,14 +236,14 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                         height: 20,
                       ),
                       Container(
-                        height: 50, // Set this to the desired height
+                        height: 70, // Set this to the desired height
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: imageUrls.length,
                           itemBuilder: (context, index) {
                             return Container(
-                              width: 50.0,
-                              height: 50.0,
+                              width: 70.0,
+                              height: 70.0,
                               margin: EdgeInsets.symmetric(horizontal: 5),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,

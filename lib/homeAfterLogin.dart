@@ -327,7 +327,12 @@ class _MyHome1State extends State<MyHome1> {
                             style: TextStyle(color: Colors.white),
                           )),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            final Uri url = Uri.parse('https://www.krifin.in/');
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
                           child: Text(
                             "House of krifin",
                             style: TextStyle(color: Colors.white),
