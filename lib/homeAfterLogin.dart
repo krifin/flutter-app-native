@@ -246,6 +246,8 @@ class _MyHome1State extends State<MyHome1> {
                                           print(
                                             displayedList[index]["nm"],
                                           );
+                                          Navigator.pushNamed(
+                                              context, "metaDetail");
                                         },
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
@@ -309,7 +311,9 @@ class _MyHome1State extends State<MyHome1> {
                         ],
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "about");
+                          },
                           child: Text(
                             "About",
                             style: TextStyle(color: Colors.white),

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/about.dart';
 import 'package:flutterapp/addMetaForm.dart';
 import 'package:flutterapp/addMetaverse.dart';
 
@@ -20,7 +21,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'metaDetail',
+    initialRoute: 'splash',
     routes: {
       'web1': (context) => MyWeb(),
       'home': (context) => Home1(),
@@ -31,7 +32,8 @@ void main() async {
       'home1': (context) => MyHome1(),
       'addMeta': (context) => AddMetaverse(),
       'addMetaForm': (context) => AddMetaForm(),
-      'metaDetail': (context) => MetaverseDetail()
+      'metaDetail': (context) => MetaverseDetail(),
+      'about': (context) => AboutPage()
     },
   ));
 }
