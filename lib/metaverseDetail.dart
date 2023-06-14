@@ -22,6 +22,13 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
     'https://img.bfmtv.com/c/0/0/af7/11f694c76cbd83569dfea09a18da9.jpg'
   ];
 
+  var mostPopularImageList = [
+    'https://pbs.twimg.com/media/FKhwNrFWYAEaaDQ.jpg:large',
+    'https://mediapool.bmwgroup.com/cache/P9/202301/P90492224/P90492224-bmw-group-supplierthon-for-the-metaverse-and-other-virtual-experiences-01-2023-1680px.jpg',
+    'https://www.bostonglobe.com/resizer/YpOXRh3x-QuRFK_wgmr86eny6WM=/arc-anglerfish-arc2-prod-bostonglobe/public/N7YPWXJCVVFWXNO55WWBZDINV4.JPG',
+    'https://img.bfmtv.com/c/0/0/af7/11f694c76cbd83569dfea09a18da9.jpg'
+  ];
+
   int coverIndex = 0;
 
   @override
@@ -195,7 +202,7 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                         height: 140,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: imageUrls.length,
+                          itemCount: mostPopularImageList.length,
                           itemBuilder: (context, index) {
                             return Container(
                               margin: EdgeInsets.symmetric(horizontal: 10),
@@ -203,7 +210,8 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30.0),
                                 image: DecorationImage(
-                                  image: NetworkImage(imageUrls[index]),
+                                  image:
+                                      NetworkImage(mostPopularImageList[index]),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -236,7 +244,7 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                         height: 100, // Set this to the desired height
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: imageUrls.length,
+                          itemCount: mostPopularImageList.length,
                           itemBuilder: (context, index) {
                             return Container(
                               margin: EdgeInsets.symmetric(horizontal: 10),
@@ -244,7 +252,8 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.0),
                                 image: DecorationImage(
-                                  image: NetworkImage(imageUrls[index]),
+                                  image:
+                                      NetworkImage(mostPopularImageList[index]),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -277,7 +286,7 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                         height: 70, // Set this to the desired height
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: imageUrls.length,
+                          itemCount: mostPopularImageList.length,
                           itemBuilder: (context, index) {
                             return Container(
                               width: 70.0,
@@ -290,7 +299,7 @@ class _MetaverseDetailState extends State<MetaverseDetail> {
                               ),
                               child: ClipOval(
                                 child: Image.network(
-                                  imageUrls[index],
+                                  mostPopularImageList[index],
                                   fit: BoxFit.cover,
                                 ),
                               ),
