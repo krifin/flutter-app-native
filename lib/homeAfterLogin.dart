@@ -342,7 +342,9 @@ class _MyHome1State extends State<MyHome1> {
                             style: TextStyle(color: Colors.white),
                           )),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "partners");
+                          },
                           child: Text(
                             "Partners",
                             style: TextStyle(color: Colors.white),

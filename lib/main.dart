@@ -10,6 +10,7 @@ import 'package:flutterapp/emailLogin.dart';
 import 'package:flutterapp/home.dart';
 import 'package:flutterapp/homeAfterLogin.dart';
 import 'package:flutterapp/metaverseDetail.dart';
+import 'package:flutterapp/partners.dart';
 import 'package:flutterapp/splash.dart';
 
 import 'package:flutterapp/webP.dart';
@@ -33,7 +34,8 @@ void main() async {
       'addMeta': (context) => AddMetaverse(),
       'addMetaForm': (context) => AddMetaForm(),
       'metaDetail': (context) => MetaverseDetail(),
-      'about': (context) => AboutPage()
+      'about': (context) => AboutPage(),
+      'partners': (context) => PartnersPage()
     },
   ));
 }
